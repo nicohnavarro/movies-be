@@ -11,13 +11,6 @@ var host = new HostBuilder()
         var connectionString = Environment.GetEnvironmentVariable("SqlDb");
         services.AddDbContext<AppDbContext>(options => 
             options.UseSqlServer(connectionString));
-
-        // Apply migrations
-        using (var scope = services.BuildServiceProvider().CreateScope())
-        {
-            var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-            dbContext.Database.Migrate();
-        }
     })
     .Build();
 
