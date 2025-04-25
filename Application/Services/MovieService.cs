@@ -26,8 +26,7 @@ namespace KindaMovies.Application.Services
 
         public async Task<IEnumerable<Movie>> SearchMoviesByTermAsync(string searchTerm)
         {
-            var (movies, _) = await _movieRepository.GetPaginatedAsync(1, int.MaxValue);
-            return movies.Where(m => m.Title.ToLower().Contains(searchTerm.ToLower()));
+            return await _movieRepository.SearchByTermAsync(searchTerm);
         }
     }
 } 
